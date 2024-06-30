@@ -22,6 +22,13 @@ public:
     std::string getId() const {
         return id_;
     }
+    int getAvg() const {
+        double sum = 0;
+        for (const auto& score : scores_) {
+            sum += score.second;
+        }
+        return sum / scores_.size();
+    }
     void showAllScores() const {
         for (const auto& score : scores_) {
             std::cout << "Subject: " << score.first << ", Score: " << score.second << std::endl;
@@ -33,6 +40,13 @@ public:
             subcores.push_back(score.first+":"+std::to_string(score.second));
         }
         return subcores;
+    }
+    std::string getAllScores()const{
+        std::string res="";
+        for (const auto& score : scores_) {
+            res+=score.first+":"+std::to_string(score.second)+" ";
+        }
+        return res;
     }
     bool saveToFile( const std::string filename) const{
         std::ofstream file(filename);

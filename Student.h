@@ -10,6 +10,9 @@ public:
     int getAge() const { return age_; }
     std::string getId() const { return id_; }
     bool isReg()const{return isRegistered_;}
+    void setReg(){
+        isRegistered_=true;
+    }
 
 private:
     std::string name_;

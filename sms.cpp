@@ -5,6 +5,7 @@
 #include<signin.h>
 #include"score.h"
 #include"studentScore.h"
+#include"manage.h""
 SMS::SMS(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::SMS)
@@ -60,10 +61,32 @@ void SMS::on_buttonBox_rejected()
 }
 
 
-void SMS::on_pushButton_clicked()
+
+
+
+
+
+void SMS::on_scoreButton_clicked()
 {
+    if(static_cast<int>(acc->getType())!=0){
+        QMessageBox::warning(this,"Warning","你并非学生，没有成绩");
+        return ;
+    }
     score *scui = new score();
     scui->init(this->acc->getAccount());
     scui->show();
+}
+
+
+void SMS::on_soreManageButton_clicked()
+{
+    if(static_cast<int>(acc->getType())==0){
+        QMessageBox::warning(this,"Warning","你是学生，没有这个权限");
+        return ;
+    }
+    Manage *maui = new Manage();
+    maui->SSMinstance = this->SSMinstance;
+    maui->init();
+    maui->show();
 }
 

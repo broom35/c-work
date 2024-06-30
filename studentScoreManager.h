@@ -32,12 +32,18 @@ namespace SCM{
             }
             throw std::runtime_error("No student with id " + id);
         }
-        
         void showAllStudents() const {
             for (const auto& student : students_) {
                 std::cout << "Id: " << student.getId() << std::endl;
                 student.showAllScores();
             }
+        }
+        std::string AllScores() const {
+            std::string res = "";
+            for (const auto& student : students_) {
+                res+= "id:"+student.getId()+" " +student.getAllScores()+"\n";
+            }
+            return res;
         }
         bool saveToFile( const std::string filename) const{
             std::ofstream file(filename);

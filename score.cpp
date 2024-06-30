@@ -17,6 +17,7 @@ void score::init(std::string accid){
     for(auto &i:subcores){
         ui->scoreList->addItem(QString::fromStdString(i));
     }
+    ui->label_avg->setText(QString::fromStdString("平均分:"+std::to_string(this->SCMinstance->getStudent(accid).getAvg())));
 }
 score::~score()
 {

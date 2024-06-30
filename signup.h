@@ -3,7 +3,6 @@
 #include <QDialog>
 #include"AccountsManager.h"
 #include"StudentsManager.h"
-#include"TeachersManager.h"
 namespace Ui {
 class SignUp;
 }

@@ -33,7 +33,9 @@ private slots:
 
     void on_buttonBox_rejected();
 
-    void on_pushButton_clicked();
+    void on_scoreButton_clicked();
+
+    void on_soreManageButton_clicked();
 
 private:
     Ui::SMS *ui;

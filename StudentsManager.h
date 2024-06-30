@@ -37,8 +37,9 @@ public:
         throw std::runtime_error("No student with id " + id);
     }
     bool isAllowSignUp(std::string accId){
-        for (const auto& student : students_) {
+        for (auto& student : students_) {
             if(student.getId()==accId&&!student.isReg()){
+                student.setReg();
                 return true;
             }
         }

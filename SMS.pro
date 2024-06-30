@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
+    manage.cpp \
     score.cpp \
     signin.cpp \
     signup.cpp \
@@ -20,8 +21,7 @@ HEADERS += \
     AccountsManager.h \
     Student.h \
     StudentsManager.h \
-    Teacher.h \
-    TeachersManager.h \
+    manage.h \
     score.h \
     signin.h \
     signup.h \
@@ -30,6 +30,7 @@ HEADERS += \
     studentScoreManager.h
 
 FORMS += \
+    manage.ui \
     score.ui \
     signin.ui \
     signup.ui \
