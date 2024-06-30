@@ -3,6 +3,7 @@
 #include "sms.h"
 #include "signup.h"
 #include <QMessageBox>
+#include"AccountsManager.h"
 #include<string.h>
 SignIn::SignIn(QWidget *parent)
     : QDialog(parent)
@@ -10,7 +11,14 @@ SignIn::SignIn(QWidget *parent)
 {
     ui->setupUi(this);
 }
-
+void SignIn::init(){
+     this->setWindowTitle("登录界面");
+    if(this->instance==nullptr){
+         ASM::AccountsManager Pam= ASM::AccountsManager();
+        Pam.Init();
+        this->instance = &Pam;
+     }
+}
 SignIn::~SignIn()
 {
     delete ui;
@@ -33,10 +41,11 @@ void SignIn::on_SIButton_clicked()
     ac = ui->accountName->text().toStdString();
     pw =ui->passWord->text().toStdString();
 
-    if(this->accountsManager->SignIn(ac,pw)){
+    if(this->instance->SignIn(ac,pw)){
         this->close();
         SMS *sui = new SMS;
-        sui->accountsManager=this->accountsManager;
+        sui->setAccount(this->instance->getAccount(ac));
+        sui->init();
         sui->show();
         return;
     }
@@ -51,7 +60,8 @@ void SignIn::on_SIButton_clicked()
 void SignIn::on_SUButton_clicked()
 {
     SignUp *suui = new SignUp;
-    suui->accountsManager = this->accountsManager;
+    suui->instance = this->instance;
+    suui->init();
     suui ->show();
 }
 

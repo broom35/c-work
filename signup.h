@@ -1,8 +1,9 @@
 #ifndef SIGNUP_H
 #define SIGNUP_H
-#include "AccountsManager.h"
 #include <QDialog>
-
+#include"AccountsManager.h"
+#include"StudentsManager.h"
+#include"TeachersManager.h"
 namespace Ui {
 class SignUp;
 }
@@ -14,8 +15,8 @@ class SignUp : public QDialog
 public:
     explicit SignUp(QWidget *parent = nullptr);
     ~SignUp();
-    AccountsManager *accountsManager;
-
+    void init();
+    ASM::AccountsManager *instance;
 private slots:
     void on_SUButton_clicked();
 

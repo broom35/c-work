@@ -17,6 +17,18 @@ public:
     std::string getAccount() const { return account_; }
     std::string getPassword() const { return password_; }
     AccountType getType() const { return type_; }
+    std::string getTypeStr() const {
+        switch (type_) {
+        case AccountType::Student:
+            return "Student";
+        case AccountType::Teacher:
+            return "Teacher";
+        case AccountType::Admin:
+            return "Admin";
+        default:
+            return "Unknown";
+        }
+    }
     std::string serialize() const {
         return account_ + " " + password_ + " " + std::to_string(static_cast<int>(type_));
     }
@@ -25,7 +37,7 @@ public:
         int type;
         std::istringstream iss(str);
         iss >> account >> password >> type;
-        account_ = account;
+        account_ = account; //我们假定学号就是账号
         password_ = password;
         type_ = static_cast<AccountType>(type);
         return 1;
@@ -36,7 +48,7 @@ public:
                   << ",\n Type: " << static_cast<int>(type_) << std::endl;
     }
 private:
-    std::string account_;
+    std::string account_; //id
     std::string password_;
     AccountType type_;
 };

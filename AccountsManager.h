@@ -1,22 +1,31 @@
 #ifndef ACCOUNTSMANAGER_H
 #define ACCOUNTSMANAGER_H
 #include "Account.h"
+#include"StudentsManager.h"
+#include"TeachersManager.h"
 #include <vector>
 #include <string>
 #include <iostream>
 #include <fstream>
+namespace ASM{
 const std::string filename = "accounts.txt";
 class AccountsManager {
 public:
+    SSM::StudentManager *SSMinstance;
     AccountsManager() {}
     ~AccountsManager() {
         Destroy();
     }
+    // static AccountsManager* getInstance(){
+    //     return instance;
+    // }
+    //一些无用功
     ///<summary>
     ///read all accounts from file , if success ,return true, else return false
     ///</summary>
     bool Init()
     {
+        //this->instance = this;
         if (!Load()) {
             return false;
         }
@@ -104,6 +113,9 @@ public:
     ///</summary>
     bool SignUp(const std::string& account, const std::string& password, int ty)
     {
+        if(ty==0&&!this->SSMinstance->isAllowSignUp(account)){
+            return 0;
+        }
         AccountType type;
         switch (ty) {
         case 0:
@@ -138,7 +150,8 @@ public:
     }
 private:
     std::vector<Account> accounts_;
+    //static AccountsManager* instance;
 };
-
+}
 
 #endif // ACCOUNTSMANAGER_H

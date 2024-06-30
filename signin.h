@@ -12,8 +12,9 @@ class SignIn : public QDialog
 
 public:
     explicit SignIn(QWidget *parent = nullptr);
-    AccountsManager *accountsManager;
     ~SignIn();
+    void init();
+    ASM::AccountsManager* instance=nullptr;
 
 private slots:
     void on_SignIn_accepted();

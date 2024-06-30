@@ -56,7 +56,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>账号</string>
+    <string>账号(学号)</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
